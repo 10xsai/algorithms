@@ -1,6 +1,6 @@
 def sort(array):
     n = len(array)
-    if n > 2:
+    if n < 2:
         return
     for k in range(n-1):
         flag = False
@@ -10,3 +10,4 @@ def sort(array):
                 flag=True
         if not flag:
             return
+

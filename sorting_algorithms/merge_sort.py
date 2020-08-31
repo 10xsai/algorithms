@@ -1,18 +1,25 @@
 def sort(array):
-    merge_sort(array, 0, len(array)-1)  
+    return merge_sort(array)
 
 
-def merge_sort(array, left, right):
-    if left >= right:
-        return
-
-    middle = (left+right)/2
-
-    merge_sort(array, left, middle-1)
-    merge_sort(array, middle+1, right)
-    merge_halves(array, left, right)
+def merge_sort(array):
+    if len(array)<=1:
+        return array
+    left_arr = merge_sort(array[:len(array)//2])
+    right_arr = merge_sort(array[len(array)//2:])
+    return merge(left_arr, right_arr)
 
 
-
-def merge_halves(array, left, right):
-    
+def merge(left, right):
+    i, j = 0, 0
+    temp = list()
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            temp.append(left[i])
+            i+=1
+        else:
+            temp.append(right[j])
+            j+=1
+    if i==len(left): temp.extend(right[j:])
+    else: temp.extend(left[i:])
+    return temp
